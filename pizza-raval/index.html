@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="es" data-theme="red">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Pizza Raval — Pizzas, Empanadas y Milanesas en El Raval, Barcelona</title>
+  <meta name="description" content="Pizzería argentina en el corazón de El Raval. Pizzas artesanales, empanadas caseras, milanesas y bar con cócteles. Pide a domicilio por WhatsApp. Joaquín Costa 18, Barcelona." />
+  <meta name="keywords" content="pizza raval barcelona, empanadas barcelona raval, pizzería argentina barcelona, pizza take away joaquin costa, vegan pizza barcelona raval" />
+  <meta property="og:title" content="Pizza Raval — Pizzas, Empanadas y Milanesas en El Raval" />
+  <meta property="og:description" content="Pizzería argentina en El Raval. Pide por WhatsApp." />
+  <meta property="og:type" content="restaurant.restaurant" />
+  <meta name="theme-color" content="#1A1A1A" />
+
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  <link rel="apple-touch-icon" href="assets/logo.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: 'rgb(var(--c-bg) / <alpha-value>)',
+            cream:    'rgb(var(--c-surface) / <alpha-value>)',
+            ink:      'rgb(var(--c-on-surface) / <alpha-value>)',
+            light:    'rgb(var(--c-on-bg) / <alpha-value>)',
+            red:      { DEFAULT: 'rgb(var(--c-accent) / <alpha-value>)', dark: 'rgb(var(--c-accent-dark) / <alpha-value>)' },
+            gold:     'rgb(var(--c-soft) / <alpha-value>)',
+            wapp:     '#25D366'
+          },
+          fontFamily: {
+            display: ['Anton', 'Impact', 'sans-serif'],
+            head:    ['Oswald', 'sans-serif'],
+            body:    ['"DM Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    // Apply saved theme + lang BEFORE first paint to avoid FOUC.
+    (function() {
+      try {
+        var t = localStorage.getItem('pr-theme') || 'red';
+        var l = localStorage.getItem('pr-lang')  || 'es';
+        document.documentElement.dataset.theme = t;
+        document.documentElement.lang = l;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body class="font-body antialiased">
+
+  <!-- ─────────────────────────  SWITCHER  ───────────────────────── -->
+  <div class="switcher" role="toolbar" aria-label="Theme and language">
+    <span class="switcher-label" data-lang="es">Tema</span>
+    <span class="switcher-label" data-lang="en">Theme</span>
+    <button class="dot dot-red"    data-theme-btn="red"    aria-label="Red theme"    aria-checked="true"></button>
+    <button class="dot dot-green"  data-theme-btn="green"  aria-label="Green theme"  aria-checked="false"></button>
+    <button class="dot dot-hybrid" data-theme-btn="hybrid" aria-label="Hybrid theme" aria-checked="false"></button>
+    <span class="switcher-divider"></span>
+    <button class="lang-btn" data-lang-btn="es" aria-pressed="true">ES</button>
+    <button class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+  </div>
+
+  <!-- ─────────────────────────  NAV  ───────────────────────── -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-charcoal/95 backdrop-blur-sm border-b border-light/5">
+    <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2.5">
+        <img src="assets/logo.jpg" alt="Pizza Raval" class="nav-logo" />
+        <span class="font-display text-light text-2xl tracking-wider leading-none">PIZZA RAVAL</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm uppercase tracking-widest text-light/80 font-head">
+        <a href="#concepts" class="hover:text-gold transition-colors"><span data-lang="es">Locales</span><span data-lang="en">Spots</span></a>
+        <a href="#menu" class="hover:text-gold transition-colors"><span data-lang="es">Carta</span><span data-lang="en">Menu</span></a>
+        <a href="#reviews" class="hover:text-gold transition-colors"><span data-lang="es">Reseñas</span><span data-lang="en">Reviews</span></a>
+        <a href="#find" class="hover:text-gold transition-colors"><span data-lang="es">Visitar</span><span data-lang="en">Visit</span></a>
+      </nav>
+      <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener"
+         class="hidden sm:inline-flex items-center gap-2 bg-wapp hover:brightness-110 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.821 11.821 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- ─────────────────────────  1. HERO  ───────────────────────── -->
+  <section id="hero" class="relative min-h-screen bg-charcoal text-light overflow-hidden pt-14">
+    <div class="absolute inset-0 noise opacity-[0.07] pointer-events-none"></div>
+    <div class="absolute -right-32 -top-32 w-[40rem] h-[40rem] rounded-full bg-red/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-light/0 via-light/40 to-light/0"></div>
+
+    <div class="relative max-w-6xl mx-auto px-5 pt-24 md:pt-32 pb-16">
+      <p data-reveal class="font-head text-gold tracking-[0.3em] text-xs md:text-sm uppercase mb-6">
+        El Raval <span class="text-gold/60">·</span> Barcelona
+      </p>
+      <p data-reveal class="font-body text-light/60 text-sm md:text-base mb-2">
+        Carrer de Joaquín Costa, 18
+      </p>
+      <h1 data-reveal class="font-display text-light leading-[0.85] tracking-tight text-[18vw] md:text-[14rem] lg:text-[16rem]">
+        PIZZA<br/><span class="text-red">RAVAL</span>
+      </h1>
+      <p data-reveal class="font-head text-xl md:text-3xl mt-6 tracking-wide">
+        <span data-lang="es">Pizzas <span class="text-gold">·</span> Empanadas <span class="text-gold">·</span> Milanesas</span>
+        <span data-lang="en">Pizza <span class="text-gold">·</span> Empanadas <span class="text-gold">·</span> Milanese</span>
+      </p>
+      <p data-reveal class="mt-3 text-light/70 max-w-xl italic">
+        <span data-lang="es">Pizza al estilo argentino, empanadas hechas a mano y un bar que abre hasta tarde.</span>
+        <span data-lang="en">Argentine-style pizza, handmade empanadas, and a bar that stays open late.</span>
+      </p>
+
+      <div data-reveal class="mt-10 flex flex-col sm:flex-row gap-3">
+        <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center gap-3 bg-wapp hover:brightness-110 text-white font-head text-lg uppercase tracking-wide px-7 py-4 rounded-md transition transform hover:-translate-y-0.5">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.821 11.821 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+          <span data-lang="es">Pedir por WhatsApp</span>
+          <span data-lang="en">Order on WhatsApp</span>
+        </a>
+        <a href="#menu"
+           class="inline-flex items-center justify-center gap-3 border-2 border-light/30 hover:border-gold hover:text-gold text-light font-head text-lg uppercase tracking-wide px-7 py-4 rounded-md transition">
+          <span data-lang="es">Ver el menú →</span>
+          <span data-lang="en">View menu →</span>
+        </a>
+      </div>
+
+      <p data-reveal class="absolute bottom-8 left-5 md:left-10 right-5 md:right-auto font-body text-light/50 text-xs md:text-sm">
+        <span class="text-gold">★</span>
+        <span data-lang="es">8.7/10 TheFork · 4.7/5 Restaurant Guru · 300+ reseñas</span>
+        <span data-lang="en">8.7/10 TheFork · 4.7/5 Restaurant Guru · 300+ reviews</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  2. TWO CONCEPTS  ───────────────────────── -->
+  <section id="concepts" class="bg-cream text-ink relative">
+    <div class="absolute inset-0 paper opacity-[0.04] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-12 md:mb-16 text-center">
+        <p class="font-head text-red uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Dos locales · Un mismo espíritu</span>
+          <span data-lang="en">Two spots · One spirit</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-7xl leading-none">
+          <span data-lang="es">Dos formas de vivir<br/>Pizza Raval</span>
+          <span data-lang="en">Two ways to live<br/>Pizza Raval</span>
+        </h2>
+      </header>
+
+      <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+        <article data-reveal class="group relative bg-charcoal text-light rounded-lg p-8 md:p-10 overflow-hidden transition transform hover:-translate-y-1">
+          <span class="absolute top-6 right-6 font-head text-gold/60 text-xs uppercase tracking-widest">
+            <span data-lang="es">01 · Takeaway</span>
+            <span data-lang="en">01 · Takeaway</span>
+          </span>
+          <h3 class="font-display text-4xl md:text-5xl mt-8">Pizza Raval</h3>
+          <p class="font-head text-gold tracking-wider text-sm mt-1 uppercase">Joaquín Costa, 18</p>
+          <p class="mt-6 text-light/80 leading-relaxed">
+            <span data-lang="es">Pizzas enteras y por porciones, empanadas, milanesas. Para llevar o comer aquí mismo. Pedidos por WhatsApp.</span>
+            <span data-lang="en">Whole pizzas and by-the-slice, empanadas, milanesas. Takeaway or eat in. Orders via WhatsApp.</span>
+          </p>
+          <p class="mt-6 font-body text-base">
+            <span class="font-head uppercase text-gold tracking-widest text-xs mr-1" data-lang="es">Abierto</span>
+            <span class="font-head uppercase text-gold tracking-widest text-xs mr-1" data-lang="en">Open</span>
+            <span data-lang="es">todos los días · 12:30 — 00:00</span>
+            <span data-lang="en">every day · 12:30 — 00:00</span>
+          </p>
+          <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20pedir%20para%20llevar" target="_blank" rel="noopener"
+             class="mt-8 inline-flex items-center gap-2 font-head uppercase tracking-wide text-sm border-b-2 border-red pb-1 hover:text-gold hover:border-gold transition">
+            <span data-lang="es">Pedir ahora →</span>
+            <span data-lang="en">Order now →</span>
+          </a>
+        </article>
+
+        <article data-reveal class="group relative bg-red text-light rounded-lg p-8 md:p-10 overflow-hidden transition transform hover:-translate-y-1">
+          <span class="absolute top-6 right-6 font-head text-light/60 text-xs uppercase tracking-widest">02 · Bar</span>
+          <h3 class="font-display text-4xl md:text-5xl mt-8">Pizza Raval Bar</h3>
+          <p class="font-head text-gold tracking-wider text-sm mt-1 uppercase">Sitges, 6</p>
+          <p class="mt-6 text-light/90 leading-relaxed">
+            <span data-lang="es">El bar: pasta artesanal, cócteles, buena música, eventos y cultura. Reserva por WhatsApp o ven directamente.</span>
+            <span data-lang="en">The bar: artisanal pasta, cocktails, great music, events and culture. Book via WhatsApp or just walk in.</span>
+          </p>
+          <p class="mt-6 font-body text-base">
+            <span class="font-head uppercase text-gold tracking-widest text-xs mr-1" data-lang="es">Noches</span>
+            <span class="font-head uppercase text-gold tracking-widest text-xs mr-1" data-lang="en">Nights</span>
+            <span data-lang="es">Jue · Vie · Sáb · Dom</span>
+            <span data-lang="en">Thu · Fri · Sat · Sun</span>
+          </p>
+          <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20reservar%20una%20mesa" target="_blank" rel="noopener"
+             class="mt-8 inline-flex items-center gap-2 font-head uppercase tracking-wide text-sm border-b-2 border-light pb-1 hover:text-gold hover:border-gold transition">
+            <span data-lang="es">Reservar mesa →</span>
+            <span data-lang="en">Book a table →</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  3. MENU (real items from PDFs)  ───────────────────────── -->
+  <section id="menu" class="bg-charcoal text-light relative">
+    <div class="absolute inset-0 noise opacity-[0.07] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-12 md:mb-16 text-center">
+        <p class="font-head text-gold uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">La carta</span>
+          <span data-lang="en">The menu</span>
+        </p>
+        <h2 class="font-display text-6xl md:text-8xl leading-none">
+          <span data-lang="es">La carta</span>
+          <span data-lang="en">Menu</span>
+        </h2>
+        <p class="mt-4 font-body italic text-base text-light/60">
+          <span data-lang="es">Pizzas, hamburguesas, empanadas, milanesas y cervezas.</span>
+          <span data-lang="en">Pizza, burgers, empanadas, milanesas & beer.</span>
+        </p>
+      </header>
+
+      <!-- Tab buttons -->
+      <div data-reveal class="flex flex-wrap justify-center gap-2 md:gap-3 mb-10" role="tablist" aria-label="Menu categories">
+        <button class="tab-btn is-active" data-tab="pizzas" role="tab" aria-selected="true">
+          <span data-lang="es">Pizzas</span><span data-lang="en">Pizzas</span>
+        </button>
+        <button class="tab-btn" data-tab="picar" role="tab" aria-selected="false">
+          <span data-lang="es">Para Picar</span><span data-lang="en">Appetizers</span>
+        </button>
+        <button class="tab-btn" data-tab="alpan" role="tab" aria-selected="false">
+          <span data-lang="es">Al Pan</span><span data-lang="en">Burgers & Milanesas</span>
+        </button>
+        <button class="tab-btn" data-tab="bebidas" role="tab" aria-selected="false">
+          <span data-lang="es">Bebidas</span><span data-lang="en">Drinks</span>
+        </button>
+      </div>
+
+      <!-- TAB: Pizzas Enteras + Especiales -->
+      <div class="tab-panel" data-panel="pizzas" role="tabpanel">
+        <p data-reveal class="text-center text-light/60 italic mb-10">
+          <span data-lang="es">Masa artesanal, horno de piedra. También por porciones (3,5€).</span>
+          <span data-lang="en">Artisanal dough, stone oven. Also by the slice (€3.50).</span>
+        </p>
+        <div class="grid md:grid-cols-2 gap-x-12 max-w-5xl mx-auto">
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name">Margarita <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Salsa de tomate, muzzarella y pesto</span><span data-lang="en">Tomato sauce, mozzarella, pesto</span></div></div><div class="menu-price">€18</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name">Fugazza <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, cebolla y orégano</span><span data-lang="en">Mozzarella, onions, oregano</span></div></div><div class="menu-price">€19</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Champiñones</span><span data-lang="en">Mushroom</span> <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, champiñones y orégano</span><span data-lang="en">Mozzarella, mushrooms, oregano</span></div></div><div class="menu-price">€19</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name">Bacon &amp; BBQ</div><div class="menu-desc"><span data-lang="es">Muzzarella, tiras de bacon, salsa barbacoa</span><span data-lang="en">Mozzarella, bacon strips, BBQ sauce</span></div></div><div class="menu-price">€20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Vegetales</span><span data-lang="en">Veggie</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, calabacín, pimientos y puerro</span><span data-lang="en">Mozzarella, zucchini, red peppers, leeks</span></div></div><div class="menu-price">€20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Jamón Dulce</span><span data-lang="en">Sweet Ham</span></div><div class="menu-desc"><span data-lang="es">Muzzarella y jamón dulce</span><span data-lang="en">Mozzarella and ham</span></div></div><div class="menu-price">€20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Espinaca &amp; Queso Azul</span><span data-lang="en">Spinach &amp; Blue Cheese</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, espinaca y queso azul</span><span data-lang="en">Mozzarella, spinach, blue cheese</span></div></div><div class="menu-price">€20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name">Pepperoni</div><div class="menu-desc"><span data-lang="es">Muzzarella y chorizo de pepperoni</span><span data-lang="en">Mozzarella and pepperoni</span></div></div><div class="menu-price">€21</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Queso de Cabra</span><span data-lang="en">Goat Cheese</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, queso de cabra y miel</span><span data-lang="en">Mozzarella, goat cheese, honey</span></div></div><div class="menu-price">€21</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Tomate y Rúcula</span><span data-lang="en">Tomato &amp; Arugula</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, tomates cherry y rúcula</span><span data-lang="en">Mozzarella, cherry tomatoes, arugula</span></div></div><div class="menu-price">€21</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">4 Quesos</span><span data-lang="en">4 Cheese</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, queso azul, cheddar y provolone</span><span data-lang="en">Mozzarella, blue cheese, cheddar, provolone</span></div></div><div class="menu-price">€21</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Vegana</span><span data-lang="en">Vegan</span> <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Queso vegano, calabacín, pimientos y puerro</span><span data-lang="en">Vegan cheese, zucchini, red peppers, leeks</span></div></div><div class="menu-price">€21</div></div>
+        </div>
+
+        <!-- Especiales callout -->
+        <div data-reveal class="especiales-callout max-w-5xl mx-auto" data-label="Especiales">
+          <div class="grid md:grid-cols-2 gap-x-12">
+            <div class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Hawaiana</span><span data-lang="en">Hawaiian</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, jamón dulce y piña</span><span data-lang="en">Mozzarella, ham, pineapple</span></div></div><div class="menu-price">€22</div></div>
+            <div class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Anchoas con Aceitunas Negras</span><span data-lang="en">Anchovies with Black Olives</span></div></div><div class="menu-price">€24</div></div>
+            <div class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Rúcula con Tomates Secos</span><span data-lang="en">Arugula with Sun-Dried Tomatoes</span> <span class="veg-badge">🌱</span></div></div><div class="menu-price">€24</div></div>
+            <div class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Jamón Dulce, Huevo y Aceitunas</span><span data-lang="en">Sweet Ham, Boiled Egg, Olives</span></div></div><div class="menu-price">€25</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Para Picar -->
+      <div class="tab-panel hidden" data-panel="picar" role="tabpanel">
+        <p data-reveal class="text-center text-light/60 italic mb-10">
+          <span data-lang="es">Para empezar, compartir, o picar entre amigos.</span>
+          <span data-lang="en">To start, to share, to nibble.</span>
+        </p>
+        <div class="grid md:grid-cols-2 gap-x-12 max-w-5xl mx-auto">
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Olivas</span><span data-lang="en">Olives</span> <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Verdes y negras</span><span data-lang="en">Black &amp; green</span></div></div><div class="menu-price">€2,00</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Porción de Pizza</span><span data-lang="en">Slice of Pizza</span></div></div><div class="menu-price">€3,50</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Empanada de Carne</span><span data-lang="en">Meat Empanada</span></div></div><div class="menu-price">€3,20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Empanada de Pollo</span><span data-lang="en">Chicken Empanada</span></div></div><div class="menu-price">€3,20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Empanada Vegana</span><span data-lang="en">Vegan Empanada</span> <span class="veg-badge">🌱</span></div></div><div class="menu-price">€3,20</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Porción de Faina</span><span data-lang="en">Slice of Faina</span> <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">De garbanzos o con espinaca</span><span data-lang="en">Garbanzo or garbanzo with spinach</span></div></div><div class="menu-price">€3,00</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Faina Montada</span><span data-lang="en">Loaded Faina</span></div><div class="menu-desc"><span data-lang="es">Salsa de tomate, queso y hasta 2 toppings</span><span data-lang="en">Tomato sauce, cheese, up to 2 toppings</span></div></div><div class="menu-price">€3,50</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name">Hummus <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Con tiritas de pan de pizza</span><span data-lang="en">With pizza bread strips</span></div></div><div class="menu-price">€5,50</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Tiritas de Faina Crocante</span><span data-lang="en">Crispy Faina Strips</span> <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Con dip de salsa de tomates secos</span><span data-lang="en">With sun-dried tomato dip</span></div></div><div class="menu-price">€5,50</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Tiritas de Milanesa</span><span data-lang="en">Milanesa Strips</span></div><div class="menu-desc"><span data-lang="es">Con chimichurri</span><span data-lang="en">With chimichurri</span></div></div><div class="menu-price">€6,50</div></div>
+        </div>
+      </div>
+
+      <!-- TAB: Al Pan -->
+      <div class="tab-panel hidden" data-panel="alpan" role="tabpanel">
+        <p data-reveal class="text-center text-light/60 italic mb-10">
+          <span data-lang="es">Hamburguesas y milanesas al pan. Extras a 0,99€.</span>
+          <span data-lang="en">Burgers and milanesa sandwiches. Add-ons €0.99 each.</span>
+        </p>
+        <div class="grid md:grid-cols-2 gap-x-12 max-w-5xl mx-auto">
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name">Burger</div><div class="menu-desc"><span data-lang="es">Cheddar, lechuga, tomate y ketchup</span><span data-lang="en">Cheddar, lettuce, tomato, ketchup</span></div></div><div class="menu-price">€8,50</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Milanesa de Pollo</span><span data-lang="en">Chicken Milanesa</span></div><div class="menu-desc"><span data-lang="es">Muzzarella, lechuga y tomate</span><span data-lang="en">Mozzarella, lettuce, tomato</span></div></div><div class="menu-price">€8,50</div></div>
+          <div data-reveal class="menu-row"><div class="menu-meta"><div class="menu-name"><span data-lang="es">Milanesa de Berenjena</span><span data-lang="en">Eggplant Milanesa</span> <span class="veg-badge">🌱</span></div><div class="menu-desc"><span data-lang="es">Queso vegano, lechuga y tomate</span><span data-lang="en">Vegan cheese, lettuce, tomato</span></div></div><div class="menu-price">€8,50</div></div>
+        </div>
+        <p data-reveal class="mt-10 text-center text-light/70 max-w-3xl mx-auto">
+          <span class="font-head uppercase tracking-widest text-gold text-xs mr-2" data-lang="es">Extras</span>
+          <span class="font-head uppercase tracking-widest text-gold text-xs mr-2" data-lang="en">Add-ons</span>
+          <span data-lang="es">Huevo frito · Bacon · Jamón dulce · Rúcula · Cebolla · Queso de cabra · Cheddar — 0,99€ c/u</span>
+          <span data-lang="en">Fried egg · Bacon · Ham · Arugula · Onion · Goat cheese · Cheddar — €0.99 each</span>
+        </p>
+      </div>
+
+      <!-- TAB: Bebidas -->
+      <div class="tab-panel hidden" data-panel="bebidas" role="tabpanel">
+        <div data-reveal class="max-w-5xl mx-auto">
+          <h3 class="font-head uppercase tracking-widest text-gold mb-4 text-sm">
+            <span data-lang="es">Cervezas</span><span data-lang="en">Beer</span>
+          </h3>
+          <div class="drinks-grid mb-10">
+            <div class="drink-row"><span class="drink-name">Caña Estrella</span><span class="drink-price">€3,00</span></div>
+            <div class="drink-row"><span class="drink-name">Caña 1906</span><span class="drink-price">€3,20</span></div>
+            <div class="drink-row"><span class="drink-name"><span data-lang="es">Pinta</span><span data-lang="en">Pint</span></span><span class="drink-price">€5,00</span></div>
+            <div class="drink-row"><span class="drink-name">Alambra <span class="text-light/40 text-xs"><span data-lang="es">botella</span><span data-lang="en">bottle</span></span></span><span class="drink-price">€3,50</span></div>
+            <div class="drink-row"><span class="drink-name">Águila <span class="text-light/40 text-xs"><span data-lang="es">botella</span><span data-lang="en">bottle</span></span></span><span class="drink-price">€4,00</span></div>
+            <div class="drink-row"><span class="drink-name"><span data-lang="es">Sin gluten</span><span data-lang="en">Gluten free</span></span><span class="drink-price">€3,50</span></div>
+          </div>
+
+          <h3 class="font-head uppercase tracking-widest text-gold mb-4 text-sm">
+            <span data-lang="es">Vinos &amp; Cócteles</span><span data-lang="en">Wine &amp; Cocktails</span>
+          </h3>
+          <div class="drinks-grid mb-10">
+            <div class="drink-row"><span class="drink-name"><span data-lang="es">Copa de vino</span><span data-lang="en">Glass of wine</span></span><span class="drink-price">€3,50</span></div>
+            <div class="drink-row"><span class="drink-name">Shots</span><span class="drink-price">€3,00</span></div>
+            <div class="drink-row"><span class="drink-name"><span data-lang="es">Cubatas</span><span data-lang="en">Highballs</span></span><span class="drink-price">€7,00</span></div>
+          </div>
+
+          <h3 class="font-head uppercase tracking-widest text-gold mb-4 text-sm">
+            <span data-lang="es">Sin alcohol</span><span data-lang="en">Non-alcoholic</span>
+          </h3>
+          <div class="drinks-grid">
+            <div class="drink-row"><span class="drink-name"><span data-lang="es">Agua</span><span data-lang="en">Water</span></span><span class="drink-price">€2,00</span></div>
+            <div class="drink-row"><span class="drink-name"><span data-lang="es">Refrescos</span><span data-lang="en">Soft drinks</span></span><span class="drink-price">€2,50</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  4. FOR EVERYONE  ───────────────────────── -->
+  <section class="bg-cream text-ink relative">
+    <div class="absolute inset-0 paper opacity-[0.04] pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-5 py-20 md:py-24">
+      <header data-reveal class="mb-10 text-center">
+        <p class="font-head text-red uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Para todos</span>
+          <span data-lang="en">For everyone</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-6xl leading-none">
+          <span data-lang="es">Opciones para todos</span>
+          <span data-lang="en">Options for everyone</span>
+        </h2>
+      </header>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <div data-reveal class="chip">
+          <span class="chip-emoji">🌱</span>
+          <h3><span data-lang="es">Opciones veganas</span><span data-lang="en">Vegan options</span></h3>
+          <p>
+            <span data-lang="es">Pizza, empanadas y milanesa veganas con queso vegano real.</span>
+            <span data-lang="en">Vegan pizza, empanadas and milanesa with real vegan cheese.</span>
+          </p>
+        </div>
+        <div data-reveal class="chip">
+          <span class="chip-emoji">🌾</span>
+          <h3><span data-lang="es">Sin gluten</span><span data-lang="en">Gluten-free</span></h3>
+          <p>
+            <span data-lang="es">Cerveza sin gluten disponible. Consulta opciones de comida.</span>
+            <span data-lang="en">Gluten-free beer available. Ask about food options.</span>
+          </p>
+        </div>
+        <div data-reveal class="chip">
+          <span class="chip-emoji">🐾</span>
+          <h3><span data-lang="es">Pet-friendly</span><span data-lang="en">Pet-friendly</span></h3>
+          <p>
+            <span data-lang="es">Los perros son bienvenidos en ambos locales.</span>
+            <span data-lang="en">Dogs welcome at both locations.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  5. REVIEWS  ───────────────────────── -->
+  <section id="reviews" class="bg-charcoal text-light relative">
+    <div class="absolute inset-0 noise opacity-[0.07] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-12 md:mb-16 text-center">
+        <p class="font-head text-gold uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Lo que dicen</span>
+          <span data-lang="en">What people say</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-7xl leading-none">
+          <span data-lang="es">Lo que dicen</span>
+          <span data-lang="en">What people say</span>
+        </h2>
+        <p class="mt-6 font-body italic text-base text-light/70">
+          <span data-lang="es">8.7/10 en TheFork &nbsp;·&nbsp; 4.7/5 en Restaurant Guru</span>
+          <span data-lang="en">8.7/10 on TheFork &nbsp;·&nbsp; 4.7/5 on Restaurant Guru</span>
+        </p>
+      </header>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        <figure data-reveal class="quote-card">
+          <p class="stars">★★★★★</p>
+          <blockquote>"Beautiful, very cozy place. Delicious empanadas and the pizza margarita were 10/10."</blockquote>
+          <figcaption>Meiling M. <span class="opacity-50">· TheFork</span></figcaption>
+        </figure>
+        <figure data-reveal class="quote-card">
+          <p class="stars">★★★★★</p>
+          <blockquote>"Beautiful place, staff so friendly and welcoming. Food was a 10/10. Will definitely return."</blockquote>
+          <figcaption>Deirdre O. <span class="opacity-50">· TheFork</span></figcaption>
+        </figure>
+        <figure data-reveal class="quote-card">
+          <p class="stars">★★★★★</p>
+          <blockquote>"Very friendly staff and amazing pizza!"</blockquote>
+          <figcaption>Anna S. <span class="opacity-50">· TheFork</span></figcaption>
+        </figure>
+        <figure data-reveal class="quote-card">
+          <p class="stars">★★★★★</p>
+          <blockquote>
+            <span data-lang="es">"Pizzas, empanadas y milanesas muy buenas a un precio excelente. Mario, el dueño, siempre tiene una sonrisa. Uno de mis lugares favoritos."</span>
+            <span data-lang="en">"Pizzas, empanadas and milanesas — really good and great prices. Mario, the owner, always has a smile. One of my favorite spots."</span>
+          </blockquote>
+          <figcaption>Foursquare <span class="opacity-50">· local tip</span></figcaption>
+        </figure>
+      </div>
+
+      <div data-reveal class="mt-12 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-center">
+        <div class="rating-block"><span class="rating-num">8.7<small>/10</small></span><span class="rating-label">TheFork</span></div>
+        <div class="rating-block"><span class="rating-num">4.7<small>/5</small></span><span class="rating-label">Restaurant Guru</span></div>
+        <div class="rating-block"><span class="rating-num">300+</span><span class="rating-label">
+          <span data-lang="es">reseñas verificadas</span>
+          <span data-lang="en">verified reviews</span>
+        </span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  6. EVENTS  ───────────────────────── -->
+  <section class="bg-red text-light relative overflow-hidden">
+    <div class="absolute inset-0 noise opacity-[0.08] pointer-events-none"></div>
+    <div class="absolute -left-32 -bottom-32 w-[30rem] h-[30rem] rounded-full bg-charcoal/30 blur-3xl pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-10 text-center">
+        <p class="font-head text-light/70 uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Más que una pizzería</span>
+          <span data-lang="en">More than a pizza place</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-7xl leading-none">
+          <span data-lang="es">Más que una pizzería</span>
+          <span data-lang="en">More than pizza</span>
+        </h2>
+      </header>
+      <p data-reveal class="text-lg md:text-xl text-light/90 leading-relaxed max-w-3xl mx-auto text-center">
+        <span data-lang="es">Pizza Raval Bar no es solo un sitio para comer. Es un punto de encuentro del barrio: música en directo, exposiciones, noches temáticas, y una energía que mezcla lo mejor del Raval con el espíritu argentino.</span>
+        <span data-lang="en">Pizza Raval Bar is more than a place to eat. It's a neighborhood meeting point: live music, art shows, themed nights, and an energy that mixes the best of El Raval with Argentine spirit.</span>
+      </p>
+
+      <div data-reveal class="mt-10 flex flex-wrap justify-center gap-3">
+        <span class="badge-big">🎵 <span data-lang="es">Música en directo</span><span data-lang="en">Live music</span></span>
+        <span class="badge-big">🎨 <span data-lang="es">Arte y exposiciones</span><span data-lang="en">Art &amp; shows</span></span>
+        <span class="badge-big">🛹 <span data-lang="es">Cultura urbana</span><span data-lang="en">Street culture</span></span>
+      </div>
+
+      <div data-reveal class="mt-12 text-center">
+        <a href="https://www.instagram.com/pizzaravalbar/" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/80 text-light font-head uppercase tracking-wide px-7 py-4 rounded-md transition transform hover:-translate-y-0.5">
+          <span data-lang="es">Ver eventos en Instagram →</span>
+          <span data-lang="en">See events on Instagram →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  7. ORDER / RESERVE  ───────────────────────── -->
+  <section class="bg-cream text-ink relative">
+    <div class="absolute inset-0 paper opacity-[0.04] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-12 text-center">
+        <p class="font-head text-red uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Pide o reserva</span>
+          <span data-lang="en">Order or book</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-7xl leading-none">
+          <span data-lang="es">Pide o reserva</span>
+          <span data-lang="en">Order or book</span>
+        </h2>
+      </header>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <article data-reveal class="action-card">
+          <span class="action-emoji">🛵</span>
+          <h3>
+            <span data-lang="es">Pedido a domicilio<br/><span class="text-ink/60">/ Takeaway</span></span>
+            <span data-lang="en">Delivery<br/><span class="text-ink/60">/ Takeaway</span></span>
+          </h3>
+          <p class="action-desc">
+            <span data-lang="es">Pizza Raval · Joaquín Costa 18.<br/>Pide por WhatsApp y recoge en el local, o te lo llevamos.</span>
+            <span data-lang="en">Pizza Raval · Joaquín Costa 18.<br/>Order on WhatsApp and pick up, or we deliver.</span>
+          </p>
+          <p class="action-hours">
+            <span data-lang="es">Todos los días · 12:30 — 00:00</span>
+            <span data-lang="en">Every day · 12:30 — 00:00</span>
+          </p>
+          <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20hacer%20un%20pedido%20para%20llevar" target="_blank" rel="noopener" class="action-cta wapp">
+            <span data-lang="es">Pedir por WhatsApp →</span>
+            <span data-lang="en">Order on WhatsApp →</span>
+          </a>
+        </article>
+
+        <article data-reveal class="action-card">
+          <span class="action-emoji">🍷</span>
+          <h3>
+            <span data-lang="es">Reserva en el bar</span>
+            <span data-lang="en">Book at the bar</span>
+          </h3>
+          <p class="action-desc">
+            <span data-lang="es">Pizza Raval Bar · Sitges 6.<br/>Para grupos o asegurarte mesa en las noches de más ambiente.</span>
+            <span data-lang="en">Pizza Raval Bar · Sitges 6.<br/>For groups or to lock in a table on the busiest nights.</span>
+          </p>
+          <p class="action-hours">
+            <span data-lang="es">Jue · Vie · Sáb · Dom</span>
+            <span data-lang="en">Thu · Fri · Sat · Sun</span>
+          </p>
+          <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20reservar%20una%20mesa" target="_blank" rel="noopener" class="action-cta red">
+            <span data-lang="es">Reservar por WhatsApp →</span>
+            <span data-lang="en">Book on WhatsApp →</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  8. FIND US  ───────────────────────── -->
+  <section id="find" class="bg-charcoal text-light relative">
+    <div class="absolute inset-0 noise opacity-[0.07] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-12 text-center">
+        <p class="font-head text-gold uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Dónde estamos</span>
+          <span data-lang="en">Find us</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-7xl leading-none">
+          <span data-lang="es">Dónde estamos</span>
+          <span data-lang="en">Find us</span>
+        </h2>
+        <p class="mt-4 font-body text-base text-light/70">
+          Metro Liceu <span class="text-light/40">L3</span> · 4 min &nbsp;·&nbsp; Universitat <span class="text-light/40">L1/L2</span> · 8 min
+        </p>
+      </header>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <article data-reveal class="location-card">
+          <h3>🍕 Pizza Raval <span class="opacity-60 font-head text-base ml-2"><span data-lang="es">Takeaway</span><span data-lang="en">Takeaway</span></span></h3>
+          <p class="location-addr">Carrer de Joaquín Costa, 18<br/>El Raval · 08001 Barcelona</p>
+          <p class="location-meta">📞 +34 611 688 588</p>
+          <p class="location-meta">🕐 <span data-lang="es">Todos los días · 12:30 — 00:00</span><span data-lang="en">Every day · 12:30 — 00:00</span></p>
+          <div class="map-wrap mt-5">
+            <iframe loading="lazy" src="https://maps.google.com/maps?q=Carrer+de+Joaquin+Costa,+18,+08001+Barcelona&output=embed" title="Map: Pizza Raval takeaway"></iframe>
+          </div>
+        </article>
+
+        <article data-reveal class="location-card">
+          <h3>🍷 Pizza Raval Bar</h3>
+          <p class="location-addr">Carrer de les Sitges, 6<br/>El Raval · 08001 Barcelona</p>
+          <p class="location-meta">📞 +34 611 688 588</p>
+          <p class="location-meta">🕐 <span data-lang="es">Ver Instagram para horarios</span><span data-lang="en">See Instagram for event nights</span></p>
+          <div class="map-wrap mt-5">
+            <iframe loading="lazy" src="https://maps.google.com/maps?q=Carrer+de+les+Sitges,+6,+08001+Barcelona&output=embed" title="Map: Pizza Raval Bar"></iframe>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  9. INSTAGRAM GRID  ───────────────────────── -->
+  <section class="bg-cream text-ink relative">
+    <div class="absolute inset-0 paper opacity-[0.04] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+      <header data-reveal class="mb-12 text-center">
+        <p class="font-head text-red uppercase tracking-[0.3em] text-xs mb-3">
+          <span data-lang="es">Síguenos</span>
+          <span data-lang="en">Follow us</span>
+        </p>
+        <h2 class="font-display text-5xl md:text-7xl leading-none">
+          <span data-lang="es">Síguenos</span>
+          <span data-lang="en">Follow us</span>
+        </h2>
+        <p class="mt-4 font-body italic text-base">
+          <a href="https://www.instagram.com/pizzaraval/" target="_blank" rel="noopener" class="text-ink/70 hover:text-red transition">@pizzaraval</a>
+          <span class="text-ink/30 mx-2">·</span>
+          <a href="https://www.instagram.com/pizzaravalbar/" target="_blank" rel="noopener" class="text-ink/70 hover:text-red transition">@pizzaravalbar</a>
+        </p>
+      </header>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <figure data-reveal class="ig-tile"><img src="assets/food-1.png" alt="Pizza del día" /><figcaption><span data-lang="es">Pizza del día</span><span data-lang="en">Pizza of the day</span></figcaption></figure>
+        <figure data-reveal class="ig-tile"><img src="assets/food-2.jpg" alt="Empanadas" /><figcaption><span data-lang="es">Empanadas a cuchillo</span><span data-lang="en">Hand-cut empanadas</span></figcaption></figure>
+        <figure data-reveal class="ig-tile"><img src="assets/food-3.png" alt="Pasta artesanal" /><figcaption><span data-lang="es">Pasta artesanal</span><span data-lang="en">Artisanal pasta</span></figcaption></figure>
+        <figure data-reveal class="ig-tile"><img src="assets/food-4.jpg" alt="Noche en el bar" /><figcaption><span data-lang="es">Noche en el bar</span><span data-lang="en">Bar night</span></figcaption></figure>
+        <figure data-reveal class="ig-tile"><img src="assets/food-5.png" alt="Opciones veganas" /><figcaption><span data-lang="es">Opciones veganas</span><span data-lang="en">Vegan options</span></figcaption></figure>
+        <figure data-reveal class="ig-tile"><img src="assets/food-6.jpg" alt="Cócteles" /><figcaption><span data-lang="es">Cócteles de la casa</span><span data-lang="en">House cocktails</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  10. FOOTER  ───────────────────────── -->
+  <footer class="bg-charcoal text-light relative">
+    <div class="absolute inset-0 noise opacity-[0.07] pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 py-16 md:py-20">
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="flex flex-col gap-5">
+          <img src="assets/logo.jpg" alt="Pizza Raval" class="w-24 h-24 rounded-full object-cover border border-light/10" />
+          <p class="text-light/60 italic max-w-xs">
+            <span data-lang="es">"Pizzas, empanadas y milanesas — hechas con las manos y con ganas."</span>
+            <span data-lang="en">"Pizzas, empanadas and milanesas — handmade with love."</span>
+          </p>
+        </div>
+        <div>
+          <p class="font-head uppercase tracking-widest text-gold text-xs mb-3">🍕 <span data-lang="es">Takeaway</span><span data-lang="en">Takeaway</span></p>
+          <p class="text-light/80 leading-relaxed">Carrer de Joaquín Costa, 18<br/>El Raval · Barcelona</p>
+          <p class="mt-3 font-head uppercase text-xs tracking-widest text-light/70">📞 +34 611 688 588</p>
+        </div>
+        <div>
+          <p class="font-head uppercase tracking-widest text-gold text-xs mb-3">🍷 Bar</p>
+          <p class="text-light/80 leading-relaxed">Carrer de les Sitges, 6<br/>El Raval · Barcelona</p>
+          <p class="mt-3 font-head uppercase text-xs tracking-widest text-light/70">
+            <a href="https://www.instagram.com/pizzaraval/" class="hover:text-gold transition" target="_blank" rel="noopener">@pizzaraval</a>
+            <span class="mx-2 opacity-40">·</span>
+            <a href="https://www.instagram.com/pizzaravalbar/" class="hover:text-gold transition" target="_blank" rel="noopener">@pizzaravalbar</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-light/10 flex flex-col sm:flex-row gap-2 justify-between font-head text-xs uppercase tracking-widest text-light/40">
+        <p>© Pizza Raval · El Raval, Barcelona</p>
+        <p>WhatsApp +34 611 688 588</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp on mobile -->
+  <a href="https://wa.me/34611688588?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener"
+     class="md:hidden fixed bottom-5 right-5 z-50 bg-wapp text-white rounded-full p-4 shadow-2xl shadow-wapp/40">
+    <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.821 11.821 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+    <span class="sr-only">WhatsApp</span>
+  </a>
+
+  <!-- Reveal + tabs + theme + lang -->
+  <script>
+    document.documentElement.classList.add('js');
+
+    (function () {
+      // ── Reveals
+      const heroItems = [...document.querySelectorAll('#hero [data-reveal]')];
+      heroItems.forEach((el, i) => {
+        el.style.setProperty('--reveal-delay', (i * 0.05) + 's');
+        el.classList.add('hero-reveal');
+      });
+      const belowFold = [...document.querySelectorAll('[data-reveal]')].filter(el => !heroItems.includes(el));
+      belowFold.forEach(el => el.classList.add('reveal-init'));
+      const reveal = el => el.classList.add('reveal-shown');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        belowFold.forEach(el => io.observe(el));
+      } else {
+        belowFold.forEach(reveal);
+      }
+      setTimeout(() => belowFold.forEach(reveal), 1800);
+
+      // ── Menu tabs
+      const tabs = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.tab-panel');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.tab;
+          tabs.forEach(b => { b.classList.toggle('is-active', b === btn); b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
+          panels.forEach(p => {
+            const show = p.dataset.panel === target;
+            p.classList.toggle('hidden', !show);
+            if (show) {
+              p.classList.remove('tab-fade');
+              void p.offsetWidth;
+              p.classList.add('tab-fade');
+            }
+          });
+        });
+      });
+
+      // ── Theme switcher
+      const themeBtns = document.querySelectorAll('[data-theme-btn]');
+      const setTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        themeBtns.forEach(b => b.setAttribute('aria-checked', b.dataset.themeBtn === theme ? 'true' : 'false'));
+        try { localStorage.setItem('pr-theme', theme); } catch (e) {}
+      };
+      themeBtns.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.themeBtn)));
+      setTheme(localStorage.getItem('pr-theme') || 'red');
+
+      // ── Language toggle
+      const langBtns = document.querySelectorAll('[data-lang-btn]');
+      const setLang = (lang) => {
+        document.documentElement.lang = lang;
+        langBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.langBtn === lang ? 'true' : 'false'));
+        try { localStorage.setItem('pr-lang', lang); } catch (e) {}
+      };
+      langBtns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.langBtn)));
+      setLang(localStorage.getItem('pr-lang') || 'es');
+    })();
+  </script>
+</body>
+</html>

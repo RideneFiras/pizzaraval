@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js build output
+.next/
+out/
+
+# Production
+build/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Misc
+*.tsbuildinfo
+next-env.d.ts
+
+# Unrelated source documents (kept locally only)
+*.docx
+**/MUALLEM_*
+
+# Scratch screenshots at root (the keepers live in /screenshots/)
+/v4-*.jpeg
+/premium-full.jpeg
+/premium-full2.jpeg
+/premium-full3.jpeg
+/premium-hero.jpeg
+/pizza-raval-desktop*.jpeg
+/pizza-raval-mobile-hero.jpeg
+/pizza-raval-v3.jpeg
+/theme-red-hero.jpeg
+
+# Playwright snapshots
+.playwright-mcp/
+
+# Backup files
+*.bak
+*.bak.*
+
+# Claude Code tooling
+/.claude/
+/.agents/
+/skills-lock.json
+
+# Incidental root package files (not project-related)
+/package.json
+/package-lock.json
+/node_modules/

@@ -1,0 +1,60 @@
+# Website Creator
+
+This repo is a **website factory**, not a single product. It exists to produce personalized small-business websites in volume (~10/week) for cold-outreach lead gen — find businesses with no website on Google Maps, send them a working preview, convert to paid work.
+
+## Repo layout
+
+```
+Website_creator/
+  site_infos/              ← input briefs (one .md per client)
+  <client-slug>/           ← generated site folder (one per client, slug from brand name)
+  .claude/skills/          ← project-local skill bundle (mirrors ~/.claude/skills)
+  package.json             ← framer-motion lives here for build-site
+```
+
+Generated sites are siblings of `site_infos/` — not nested inside it.
+
+## Two builders, two paths
+
+| Skill | When to use | Output |
+|---|---|---|
+| **`quick-site`** | Default. Cold-outreach demos. Volume work. | Static HTML + Tailwind CDN + Motion One. No build step. Deployable by drag-and-drop. |
+| **`build-site`** | After a lead converts (paid $1k+). Premium one-offs. | Next.js + 21st.dev components + Framer Motion. Heavier stack. |
+
+**Default to `quick-site`** unless the user explicitly says premium / Next.js / paid client.
+
+## Quality skills (always invoked by the builders)
+
+These are critics/principles, not builders. The orchestrators (`quick-site`, `build-site`) call them at specific phases — never skip them:
+
+- **`frontend-design:frontend-design`** (Anthropic plugin) — Phase 1 design thinking. Mood, typography, color, motion rhythm before code.
+- **`impeccable`** — Anti-AI-slop vocabulary. Commands: `shape` (Phase 1 fallback), `critique` + `audit` + `polish` (Phase 4).
+- **`design-motion-principles`** — Motion audit Phase 5. Pick designer weighting by business type (Kowalski for B2B, Krehel for consumer, Tompkins for kids/creative).
+- **`ui-ux-pro-max`** — Design library (67 styles, 96 palettes, 57 font pairs). Used by `build-site`.
+
+## Brief format
+
+Briefs live in `site_infos/<business>_*.md`. Expected sections: business info, brand tone, site sections (numbered), design specs (colors/fonts/layout), photo asset URLs, SEO. See `site_infos/pizza_raval_website_prompt.md` as the reference example — it's the gold standard for brief detail.
+
+Use exactly what the brief says. **Never invent menu items, prices, reviews, hours, or contact info.**
+
+## Asset handling
+
+External image URLs (TheFork, Yelp, Instagram CDNs) often block hot-linking from another domain. When building, download referenced images to `<client-slug>/assets/` before referencing them in HTML, rather than hot-linking. Mark TODOs clearly for any placeholder images that need real photos.
+
+## Deploy
+
+Each generated site folder is deployable independently:
+- Static (`quick-site`): `vercel deploy <client-slug>` or drag the folder to Netlify
+- Next.js (`build-site`): `cd <client-slug> && vercel deploy`
+
+## MCP servers
+
+- `21st-dev-magic` — component library, used by `build-site`. API key in `~/.claude.json`.
+- `n8n-mcp` — unrelated to this repo.
+
+## Conventions
+
+- Slugify client folder names: lowercase, hyphens, no accents (`pizza-raval`, not `Pizza Raval`).
+- One brief = one folder. Don't bundle multiple clients in one site.
+- Don't commit `node_modules/` or any generated client folders that contain real client data without permission — these may include private contact info pulled from Maps.
